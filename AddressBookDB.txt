@@ -31,3 +31,8 @@ SELECT * FROM address_book;
 UPDATE address_book SET zip='458222' WHERE first_name = 'Abc';
 SELECT * FROM address_book;
 
+#UC5
+DELETE FROM address_book WHERE first_name = 'Abc';
+SELECT * FROM address_book;
+
+
