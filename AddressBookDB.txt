@@ -35,4 +35,13 @@ SELECT * FROM address_book;
 DELETE FROM address_book WHERE first_name = 'Abc';
 SELECT * FROM address_book;
 
+#UC6
+#Added more entries to perform further operations
+INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone, email) VALUES ('Mark', 'Gates', 'India', 'Mumbai', 'MH', '453456', '123456987', 'abcN@123.in'), ('AbcNew', 'XYX', 'India', 'Kota', 'Rajasthan', '0213245', '7894561236', 'xyx@ik.on'), 
+    -> ('XyzNew', 'Abc', 'India', 'Kota', 'Rajasthan', '0213245', '123456987', 'new@abc.in');
+
+SELECT * FROM address_book WHERE city = 'Kota';
+SELECT * FROM address_book WHERE city = 'Kota' AND state='MH';   #output - empty set
+SELECT * FROM address_book WHERE state='MH';			#output - entries from pune and mumbai
+
 
