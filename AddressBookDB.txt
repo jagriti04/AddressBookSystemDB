@@ -52,6 +52,21 @@ SELECT city, count(city) FROM address_book WHERE city='Kota' GROUP BY city;
 #UC8
 SELECT * FROM address_book WHERE city='Kota' ORDER BY first_name;
 
+#UC9
+ALTER TABLE address_book ADD book_name VARCHAR(50);
+ALTER TABLE address_book ADD book_type VARCHAR(50);
+UPDATE address_book SET book_name='Address Book 1' WHERE state='MH';
+UPDATE address_book SET book_name='Address Book 2' WHERE city='Kota';
+SELECT * FROM address_book;
+UPDATE address_book SET book_type='Family' WHERE book_name='Address Book 1';
+UPDATE address_book SET book_type='Friends' WHERE first_name='AbcNew';
+UPDATE address_book SET book_type='Work' WHERE first_name='XyzNew';
+SELECT * FROM address_book;
+
+
+
+
+
 
 
 
