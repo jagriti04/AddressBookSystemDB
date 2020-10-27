@@ -63,6 +63,13 @@ UPDATE address_book SET book_type='Friends' WHERE first_name='AbcNew';
 UPDATE address_book SET book_type='Work' WHERE first_name='XyzNew';
 SELECT * FROM address_book;
 
+#UC10
+SELECT book_type, count(first_name) FROM address_book WHERE book_type='Family';
+SELECT book_type, count(first_name) FROM address_book WHERE book_type='Friends';
+
+#UC11
+
+
 
 
 
