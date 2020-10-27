@@ -49,5 +49,10 @@ SELECT state, count(state) FROM address_book WHERE state='MH' GROUP BY state;
 SELECT state, count(state) FROM address_book WHERE state='Rajasthan' GROUP BY state;
 SELECT city, count(city) FROM address_book WHERE city='Kota' GROUP BY city;
 
+#UC8
+SELECT * FROM address_book WHERE city='Kota' ORDER BY first_name;
+
+
+
 
 
