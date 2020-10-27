@@ -68,6 +68,10 @@ SELECT book_type, count(first_name) FROM address_book WHERE book_type='Family';
 SELECT book_type, count(first_name) FROM address_book WHERE book_type='Friends';
 
 #UC11
+INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone, email, book_name, book_type) VALUES 
+    -> ('Blue', 'Whale', 'USA', 'NYC', 'NY', '0213654','032145203', 'blue@bl.in', 'Address Book US', 'Family'),
+    -> ('Pink', 'Shark', 'UK', 'London', 'London', '0032003', '2200220020', 'pink@ml.in', 'Address Book Uk', 'Friends');
+
 
 
 
