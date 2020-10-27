@@ -21,3 +21,13 @@ CREATE TABLE address_book
 INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone, email) VALUES
     -> ('Bill', 'Gates', 'India', 'Pune', 'MH', '123456', '123456987', 'abc@123.in'),
     -> ('Abc', 'XYX', 'India', 'Kota', 'Rajasthan', '0213245', '7894561236', 'xyx@ik.on');
+
+SELECT * FROM address_book;
+
+#UC4
+UPDATE address_book SET email = 'xyz@abc.com' WHERE first_name = 'Abc';
+SELECT * FROM address_book;
+
+UPDATE address_book SET zip='458222' WHERE first_name = 'Abc';
+SELECT * FROM address_book;
+
