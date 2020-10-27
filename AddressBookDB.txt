@@ -44,4 +44,10 @@ SELECT * FROM address_book WHERE city = 'Kota';
 SELECT * FROM address_book WHERE city = 'Kota' AND state='MH';   #output - empty set
 SELECT * FROM address_book WHERE state='MH';			#output - entries from pune and mumbai
 
+#UC7
+SELECT state, count(state) FROM address_book WHERE state='MH' GROUP BY state;
+SELECT state, count(state) FROM address_book WHERE state='Rajasthan' GROUP BY state;
+SELECT city, count(city) FROM address_book WHERE city='Kota' GROUP BY city;
+
+
 
