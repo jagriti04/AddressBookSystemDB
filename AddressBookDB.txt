@@ -31,9 +31,25 @@ SELECT * FROM address_book;
 UPDATE address_book SET zip='458222' WHERE first_name = 'Abc';
 SELECT * FROM address_book;
 
+#Output
++------------+-----------+---------+------+-----------+--------+------------+-------------+
+| first_name | last_name | address | city | state     | zip    | phone      | email       |
++------------+-----------+---------+------+-----------+--------+------------+-------------+
+| Abc        | XYX       | India   | Kota | Rajasthan | 458222 | 7894561236 | xyz@abc.com |
+| Bill       | Gates     | India   | Pune | MH        | 123456 | 123456987  | abc@123.in  |
++------------+-----------+---------+------+-----------+--------+------------+-------------+
+
+
 #UC5
 DELETE FROM address_book WHERE first_name = 'Abc';
 SELECT * FROM address_book;
+
+#Output
++------------+-----------+---------+------+-------+--------+-----------+------------+
+| first_name | last_name | address | city | state | zip    | phone     | email      |
++------------+-----------+---------+------+-------+--------+-----------+------------+
+| Bill       | Gates     | India   | Pune | MH    | 123456 | 123456987 | abc@123.in |
++------------+-----------+---------+------+-------+--------+-----------+------------+
 
 #UC6
 #Added more entries to perform further operations
@@ -44,13 +60,50 @@ SELECT * FROM address_book WHERE city = 'Kota';
 SELECT * FROM address_book WHERE city = 'Kota' AND state='MH';   #output - empty set
 SELECT * FROM address_book WHERE state='MH';			#output - entries from pune and mumbai
 
+#output
++------------+-----------+---------+--------+-------+--------+-----------+-------------+
+| first_name | last_name | address | city   | state | zip    | phone     | email       |
++------------+-----------+---------+--------+-------+--------+-----------+-------------+
+| Bill       | Gates     | India   | Pune   | MH    | 123456 | 123456987 | abc@123.in  |
+| Mark       | Gates     | India   | Mumbai | MH    | 453456 | 123456987 | abcN@123.in |
+
+
 #UC7
 SELECT state, count(state) FROM address_book WHERE state='MH' GROUP BY state;
 SELECT state, count(state) FROM address_book WHERE state='Rajasthan' GROUP BY state;
 SELECT city, count(city) FROM address_book WHERE city='Kota' GROUP BY city;
 
+#Outputs
++-------+--------------+
+| state | count(state) |
++-------+--------------+
+| MH    |            2 |
++-------+--------------+
+
++-----------+--------------+
+| state     | count(state) |
++-----------+--------------+
+| Rajasthan |            2 |
++-----------+--------------+
+
++------+-------------+
+| city | count(city) |
++------+-------------+
+| Kota |           2 |
++------+-------------+
+
+
 #UC8
 SELECT * FROM address_book WHERE city='Kota' ORDER BY first_name;
+
+#Output
++------------+-----------+---------+------+-----------+---------+------------+------------+
+| first_name | last_name | address | city | state     | zip     | phone      | email      |
++------------+-----------+---------+------+-----------+---------+------------+------------+
+| AbcNew     | XYX       | India   | Kota | Rajasthan | 0213245 | 7894561236 | xyx@ik.on  |
+| XyzNew     | Abc       | India   | Kota | Rajasthan | 0213245 | 123456987  | new@abc.in |
++------------+-----------+---------+------+-----------+---------+------------+------------+
+
 
 #UC9
 ALTER TABLE address_book ADD book_name VARCHAR(50);
@@ -63,14 +116,53 @@ UPDATE address_book SET book_type='Friends' WHERE first_name='AbcNew';
 UPDATE address_book SET book_type='Work' WHERE first_name='XyzNew';
 SELECT * FROM address_book;
 
+#Output
++------------+-----------+---------+--------+-----------+---------+------------+-------------+----------------+-----------+
+| first_name | last_name | address | city   | state     | zip     | phone      | email       | book_name      | book_type |
++------------+-----------+---------+--------+-----------+---------+------------+-------------+----------------+-----------+
+| AbcNew     | XYX       | India   | Kota   | Rajasthan | 0213245 | 7894561236 | xyx@ik.on   | Address Book 2 | Friends   |
+| Bill       | Gates     | India   | Pune   | MH        | 123456  | 123456987  | abc@123.in  | Address Book 1 | Family    |
+| Mark       | Gates     | India   | Mumbai | MH        | 453456  | 123456987  | abcN@123.in | Address Book 1 | Family    |
+| XyzNew     | Abc       | India   | Kota   | Rajasthan | 0213245 | 123456987  | new@abc.in  | Address Book 2 | Work      |
++------------+-----------+---------+--------+-----------+---------+------------+-------------+----------------+-----------+
+
+
 #UC10
 SELECT book_type, count(first_name) FROM address_book WHERE book_type='Family';
 SELECT book_type, count(first_name) FROM address_book WHERE book_type='Friends';
+
+#output
++-----------+-------------------+
+| book_type | count(first_name) |
++-----------+-------------------+
+| Family    |                 2 |
++-----------+-------------------+
++-----------+-------------------+
+| book_type | count(first_name) |
++-----------+-------------------+
+| Friends   |                 1 |
++-----------+-------------------+
+
 
 #UC11
 INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone, email, book_name, book_type) VALUES 
     -> ('Blue', 'Whale', 'USA', 'NYC', 'NY', '0213654','032145203', 'blue@bl.in', 'Address Book US', 'Family'),
     -> ('Pink', 'Shark', 'UK', 'London', 'London', '0032003', '2200220020', 'pink@ml.in', 'Address Book Uk', 'Friends');
+
+
+#final output
+SELECT * FROM address_book;
++------------+-----------+---------+--------+-----------+---------+------------+-------------+-----------------+-----------+
+| first_name | last_name | address | city   | state     | zip     | phone      | email       | book_name       | book_type |
++------------+-----------+---------+--------+-----------+---------+------------+-------------+-----------------+-----------+
+| AbcNew     | XYX       | India   | Kota   | Rajasthan | 0213245 | 7894561236 | xyx@ik.on   | Address Book 2  | Friends   |
+| Bill       | Gates     | India   | Pune   | MH        | 123456  | 123456987  | abc@123.in  | Address Book 1  | Family    |
+| Blue       | Whale     | USA     | NYC    | NY        | 0213654 | 032145203  | blue@bl.in  | Address Book US | Family    |
+| Mark       | Gates     | India   | Mumbai | MH        | 453456  | 123456987  | abcN@123.in | Address Book 1  | Family    |
+| Pink       | Shark     | UK      | London | London    | 0032003 | 2200220020 | pink@ml.in  | Address Book Uk | Friends   |
+| XyzNew     | Abc       | India   | Kota   | Rajasthan | 0213245 | 123456987  | new@abc.in  | Address Book 2  | Work      |
++------------+-----------+---------+--------+-----------+---------+------------+-------------+-----------------+-----------+
+
 
 
 
