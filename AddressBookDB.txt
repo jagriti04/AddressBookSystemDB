@@ -16,3 +16,8 @@ CREATE TABLE address_book
     -> email VARCHAR(50) NOT NULL,
     -> PRIMARY KEY (first_name, last_name)
     -> );
+
+#UC3
+INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone, email) VALUES
+    -> ('Bill', 'Gates', 'India', 'Pune', 'MH', '123456', '123456987', 'abc@123.in'),
+    -> ('Abc', 'XYX', 'India', 'Kota', 'Rajasthan', '0213245', '7894561236', 'xyx@ik.on');
