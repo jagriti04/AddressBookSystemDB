@@ -164,12 +164,46 @@ SELECT * FROM address_book;
 +------------+-----------+---------+--------+-----------+---------+------------+-------------+-----------------+-----------+
 
 
+ALTER TABLE address_book  DROP PRIMARY KEY;
+#added contact_id as primary key
+ALTER TABLE address_book ADD contact_id INT unsigned PRIMARY KEY AUTO_INCREMENT;
+
+#change table name
+ALTER TABLE address_book 
+    -> RENAME contact_details;
+
+show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| contact_details                |
++--------------------------------+
+
+#change tables according to ER Diagram
+ALTER TABLE contact_details 
+    -> DROP COLUMN book_name;
+ALTER TABLE contact_details  DROP COLUMN book_type;
+
+CREATE TABLE address_book ( address_book_id INT unsigned NOT NULL AUTO_INCREMENT,   address_book_name VARCHAR(150) NOT NULL,  PRIMARY KEY (address_book_id) );
+
+CREATE TABLE contact_type
+    -> (
+    -> address_book_id INT unsigned NOT NULL,
+    -> contact_type VARCHAR(150) NOT NULL,
+    -> contact_id INT unsigned NOT NULL,
+    -> FOREIGN KEY(address_book_id) REFERENCES address_book(address_book_id),
+    -> FOREIGN KEY(contact_id) REFERENCES contact_details(contact_id)
+    -> );
 
 
-
-
-
-
+show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| address_book                   |
+| contact_details                |
+| contact_type                   |
++--------------------------------+
 
 
 
